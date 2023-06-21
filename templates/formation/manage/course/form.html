@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+<!--------->
+{% load static %}
+
+<!------------>
+{% block content %}
+<section id="register" class="register">
+  <header id="header" class="header detail-header">
+    <div class="container p-5">
+      {% if object %}
+      <h3>Edit course '{{ object.title }}'</h3>
+      {% else %}
+      <h3>Create a course</h3>
+      {% endif %}
+    </div>
+  </header>
+  <div class="container">
+    <div class="row p-5">
+      <div
+        class="col-lg-6 mx-auto shadow-sm bg-body rounded-top register-card py-5"
+      >
+        <h3 class="register-title text-center">Course info</h3>
+        <hr />
+        <form action="" method="post">
+          {% csrf_token %}
+          <!----s-->
+          {{ form.as_p }}
+          <p>
+            <input
+              type="submit"
+              class="w-100 btn-violet-fill register-input"
+              value="Save course"
+            />
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

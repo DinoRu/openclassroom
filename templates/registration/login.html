@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+<!--------->
+{% load static %}
+
+<!------------>
+{% block content %}
+<section id="register" class="register p-5">
+  <div class="container">
+    <div class="row p-5">
+      <div
+        class="col-lg-6 mx-auto shadow-sm bg-body rounded-top register-card py-5"
+      >
+        <h3 class="register-title text-center">Log-in</h3>
+        <hr />
+        <form action="" method="post">
+          {% csrf_token %}
+          <!----s-->
+          {{ form.as_p }}
+          <p>
+            <input
+              type="submit"
+              class="w-100 btn-violet-fill register-input"
+              value="Register"
+            />
+          </p>
+          <p>
+            Don't have an account?
+            <a href="{% url 'student_registration' %}">create here</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

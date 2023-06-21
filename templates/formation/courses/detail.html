@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+<!------>
+{% load static %}
+<!---------->
+
+<!----------->
+{% block content %}
+
+<section id="detail" class="detail">
+  <header class="detail-header p-5">
+    <div class="container d-flex flex-column justify-content-between">
+      <div>
+        <small class="fw-bold"
+          >Home <i class="bi bi-chevron-right"></i>Course
+          <i class="bi bi-chevron-right fw-bold"></i>
+        </small>
+        <span>{{ object.title }}</span>
+      </div>
+      <br />
+      <div class="detail-title mt-3">
+        <h3>{{ object.title }}</h3>
+        <br />
+        <div class="detail-icons">
+          <span class="text-secondary"
+            ><i class="bi bi-clock"></i> {{ object.learn_hours}} hours
+          </span>
+          <span class="ms-3 text-secondary">
+            <i class="bi bi-bar-chart-fill"></i>
+            {{ object.get_level_display}}</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row mt-5 mx-5">
+      <div class="col-lg-9">
+        <p>{{ object.description|linebreaks }}</p>
+        <div class="row my-3 align-items-center text-center">
+        {% if request.user.is_authenticated %}
+          <form action="{% url 'student_enroll_course' %}" method="post">
+            {% csrf_token %} {{ enroll_form}}
+            <input
+              type="submit"
+              value="Start course"
+              class="btn btn-violet-fill"
+            />
+          </form>
+        {% else %}
+        <p>
+          <a href="{% url 'student_registration' %}" class="btn btn-violet-fill">
+            Register to start course
+          </a>
+        </p>
+        <br>
+        {% endif %}
+      </div>
+        <div class="table-matiere">
+          <h5>Table of contents</h5>
+          <hr />
+          <div class="accordion" id="accordionExample">
+            {% for m in object.modules.all %}
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading{{m.id}}">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  {{ m.title }}
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="heading{{m.id}}"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+
+                  {{ m.overview|safe|linebreaks }}
+                 
+                    <a href="{% url 'student_course_detail_module' object.id m.id %}" class="btn btn-violet-outline">
+                      Access read
+                    </a>
+                </ul>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% if object.questions.count > 0 %}
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading{{object.id}}">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Test questions
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="heading{{object.id}}" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <a href="{% url 'student_examen_start' object.id %}">Attend Exam</a>
+                </div>
+              </div>
+            </div>
+              
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 text-center">
+        <div class="shadow-sm">
+          <div class="py-5">
+            <h4>Created by</h4>
+            <br />
+            <span>{{ object.owner.username }}</span><br />
+            <span>E-learning Platform</span>
+            <br /><br />
+            <div class="social">
+              <span><i class="bi bi-twitter"></i></span>
+              <span><i class="bi bi-facebook"></i></span>
+              <span><i class="bi bi-envelope"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+<!--------->
+{% load static %}
+
+<!--------->
+{% block content %}
+<section id="course-list" class="course-list mt-5">
+  <div class="container">
+    <h2 class="free-course-list-title mb-5">All frees courses</h2>
+    <div class="row g-4">
+      {% for course in object_list %}
+      <a href="{% url 'detail' course.slug %}">
+        <div class="row shadow-sm mb-5 p-3 bg-body rounded">
+          <div class="col-lg-3">
+            <img src="{{ course.thumbnail_url }}" alt="" class="img-fluid" />
+          </div>
+          <div class="col-lg-9">
+            <span class="text-uppercase course-subject"
+              >{{ course.subject.title }} - COURSE</span
+            ><br />
+            <h5 class="course-title">{{ course.title }}</h5>
+            <br />
+            <span
+              ><i class="bi bi-bar-chart-fill"></i>
+              <!---->
+              {{ course.get_level_display }}</span
+            >
+            <span class="ms-3"
+              ><i class="bi bi-clock"></i> {{ course.learn_hours }} HOURS</span
+            ><br />
+            <p class="course-overview">{{ course.overview|safe|linebreaks }}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

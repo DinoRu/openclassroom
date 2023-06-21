@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+<!------>
+{% load static %}
+
+<!--------->
+{% block content %}
+<section id="dashboad" class="dashboard">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 dashboard-sidebar">
+        <div class="mt-5">
+          <h5 class="dashboard-header">My course</h5>
+          <div class="dashboard-items">
+            <ul>
+              <li>
+                <a href="{% url 'student_course_list' %}" class="item-link"
+                  >Courses taken</a
+                >
+              </li>
+              <li><a href="" class="item-link">Recommended courses</a></li>
+              <li>
+                <a href="{% url 'student_view_exam_result' %}" class=""
+                  >Course certificates</a
+                >
+              </li>
+              <li>
+                <a href="#" class="item-link">Recently published courses</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 course-taken px-5 mt-5">
+        <div class="shadow-sm bg-body mb-4" id="course_taken">
+          <h4 class="course-taken-title">Course taken</h4>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Total Marks</th>
+                <th scope="col">Number of Attempts</th>
+                <th scope="col">Exam Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for t in results %}
+              <tr>
+                <td>{{ t.exam }}</td>
+                <td>{{ t.marks }}</td>
+                <td>Attempt {{forloop.counter }}</td>
+                <td>{{ t.date }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

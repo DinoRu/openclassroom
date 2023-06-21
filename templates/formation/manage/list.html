@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+<!--------->
+{% load static %}
+
+<!--------->
+{% block content %}
+<section id="course-list" class="course-list mt-5">
+  <div class="container">
+    <h2 class="free-course-list-title mb-5">My courses</h2>
+    <div class="row g-4">
+      {% for course in object_list %}
+      <a href="{% url 'detail' course.slug %}">
+        <div class="row shadow-sm mb-5 p-3 bg-body rounded">
+          <div class="col-lg-3">
+            <img src="{{ course.thumbnail_url }}" alt="" class="img-fluid" />
+          </div>
+          <div class="col-lg-9">
+            <div class="row">
+              <div>
+                <span class="text-uppercase course-subject"
+                  >{{ course.subject.title }} - COURSE</span
+                ><br />
+                <h5 class="course-title">{{ course.title }}</h5>
+                <br />
+                <span
+                  ><i class="bi bi-bar-chart-fill"></i>
+                  <!---->
+                  {{ course.get_level_display }}</span
+                >
+                <span class="ms-3"
+                  ><i class="bi bi-clock"></i> {{ course.learn_hours }}
+                  HOURS</span
+                ><br />
+                <p class="course-overview">{{ course.overview|safe|linebreaks }}</p>
+              </div>
+            </div>
+            <div>
+              <p>
+                <a
+                  href="{% url 'course_update' course.id %}"
+                  class="btn-violet-outline btn-create"
+                  >Edit</a
+                >
+                <a
+                  href="{% url 'course_module_update' course.id %}"
+                  class="btn-violet-outline btn-create"
+                  >Edit modules</a
+                >
+                {% if course.modules.count > 0 %}
+                <a href="{% url "module_content_list" course.modules.first.id %}" class="btn-violet-outline btn-create">
+                  Manage contents
+                </a>
+                {% endif %}
+                <a
+                  href="{% url 'course_delete' course.id %}"
+                  class="btn-violet-outline btn-create"
+                  >Delete</a
+                >
+                <a
+                  href="{% url 'course_examen_update' course.id %}"
+                  class="btn-violet-outline btn-create"
+                  >Add Examen questions</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      <p>You haven't yet a course</p>
+      {% endfor %}
+      <p>
+        <a
+          href="{% url 'course_create' %}"
+          class="text-light btn-violet-fill create"
+          >Create New Course</a
+        >
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock content %}

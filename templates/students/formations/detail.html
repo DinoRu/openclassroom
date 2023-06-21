@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+<!------->
+{% load static %}
+<!------>
+{% block title %} {{ object.title }} {% endblock %}
+<!------->
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+{% endblock style %}
+<!--------->
+
+<!----------->
+{% block content %}
+
+<section id="detail" class="detail">
+  <header class="detail-header p-5">
+    <div class="container d-flex flex-column justify-content-between">
+      <div>
+        <small class="fw-bold"
+          >Home <i class="bi bi-chevron-right"></i>Course
+          <i class="bi bi-chevron-right fw-bold"></i>
+        </small>
+        <span>{{ object.title }}</span>
+      </div>
+      <br />
+      <div class="detail-title mt-3">
+        <h3>{{ object.title }}</h3>
+        <br />
+        <div class="detail-icons">
+          <span class="text-secondary"
+            ><i class="bi bi-clock"></i> {{ object.learn_hours}} hours
+          </span>
+          <span class="ms-3 text-secondary">
+            <i class="bi bi-bar-chart-fill"></i>
+            {{ object.get_level_display}}</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row mt-5 mx-5">
+      <div class="col-lg-9">
+        <div class="container">
+          <h3 class="fw-bold mb-4">{{ module.title }}</h4>
+          <div>
+            {% for content in module.contents.all %}
+            <!-------->
+            {% with item=content.item %}
+            <h2>{{ item.title }}</h2>
+            {{ item.render }}
+            <!----->
+            {% endwith %}
+            <!-------->
+            {% endfor %}
+          </div>
+          <div class="row my-4">
+            <div class="col-lg-6">
+              {% if previous_module %}
+              <a href="{% url 'student_course_detail_module' object.id previous_module.id %}" class="btn btn-violet-outline">
+                {{ previous_module.title }}
+              </a>
+            {% endif %}
+            </div>
+            <div class="col-lg-6">
+              {% if next_module %}
+              <a href="{% url 'student_course_detail_module' object.id next_module.id %}" class="btn btn-violet-outline">
+                {{ next_module.title }}
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="col-lg-3 text-center">
+        <div class="shadow-sm">
+          <div class="py-5">
+            <h4>Created by</h4>
+            <br />
+            <span>{{ object.owner.username }}</span><br />
+            <span>E-learning Platform</span>
+            <br /><br />
+            <div class="social">
+              <span><i class="bi bi-twitter"></i></span>
+              <span><i class="bi bi-facebook"></i></span>
+              <span><i class="bi bi-envelope"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.course-list a {
+  color: black;
+}
+
+.logo {
+  color: #7451eb;
+}
+
+.logo:hover {
+  color: #7451eb;
+}
+
+.hero {
+  background-color: rgb(255, 250, 238);
+}
+
+.testimony {
+  background-color: rgb(157, 169, 243);
+}
+
+.btn-violet-outline {
+  border: 1px solid #7451eb;
+  border-radius: 10px;
+  color: #7451eb;
+}
+
+.btn-violet-outline:hover {
+  background-color: #7451eb;
+  color: #fff;
+}
+
+.btn-violet-fill {
+  background-color: #7451eb;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.btn-violet-fill:hover {
+  background-color: #7451eb;
+  color: #fff;
+}
+
+.course-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.course-subject {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.course-overview {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.free-course-list-title {
+  font-weight: 700;
+}
+
+/* login and registration */
+.login {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.login-img {
+  width: 100%;
+  height: 100%;
+  min-height: 700px;
+  opacity: 1;
+  overflow: hidden;
+  transition: opacity ease-in-out 100ms;
+}
+
+.login-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login_col_img {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(116, 96, 235);
+  color: #fff;
+  padding: 20px;
+}
+
+.login-figure {
+  margin: 3.5rem 4rem;
+}
+
+.login-figure blockquote {
+  font-weight: 700;
+}
+
+.login_h2 {
+  color: #7451eb;
+  font-weight: 700;
+}
+
+.login-h5 {
+  font-weight: 500;
+}
+
+.register-card {
+  border-top: 3px solid #7451eb;
+}
+
+.register-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.register-input {
+  padding: 10px 0;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+}
+
+.detail-header {
+  background-color: #dad3f8;
+}
+
+.detail-title {
+  margin-left: 6rem;
+}
+
+.detail-title h3 {
+  font-weight: 700;
+}
+
+.detail .social {
+  margin-top: 1rem;
+}
+
+.detail .social span {
+  border: 1px solid #dad3f8;
+  border-radius: 50%;
+  margin-right: 15px;
+  padding: 1rem;
+}
+
+.btn-create {
+  padding: 5px 10px;
+  margin-right: 1rem;
+}
+
+.create {
+  border-radius: 20px;
+  padding: 15px 25px;
+  font-weight: 500;
+}
+
+.custom-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.custom-delete-button {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.dropdown-item {
+  border-bottom: 1px solid #7451eb;
+}

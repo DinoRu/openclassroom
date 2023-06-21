@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+<!------>
+{% load static %}
+<!---------->
+
+<!----------->
+{% block content %}
+
+<section id="detail" class="detail">
+  <header class="detail-header p-5">
+    <div class="container d-flex flex-column justify-content-between">
+      <div>
+        <small class="fw-bold"
+          >Home <i class="bi bi-chevron-right"></i>Course
+          <i class="bi bi-chevron-right fw-bold"></i>
+        </small>
+        <span>{{ course.title }}</span>
+      </div>
+      <br />
+      <div class="detail-title mt-3">
+        <h3>{{ course.title }}</h3>
+        <br />
+        <div class="detail-icons">
+          <span class="text-secondary"
+            ><i class="bi bi-clock"></i> {{ course.learn_hours}} hours
+          </span>
+          <span class="ms-3 text-secondary">
+            <i class="bi bi-bar-chart-fill"></i>
+            {{ course.get_level_display }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row mt-5 mx-5">
+      <div class="col-lg-9 bg-light">
+        <div class="row my-3 align-items-center">
+          <form
+            action="{% url 'student_calculate_marks' course.id %}"
+            method="post"
+          >
+            {% csrf_token %}
+            <br />
+            <h3 class="">Evaluated skills</h3>
+            {% for q in questions %}
+            <h3 class="mt-4">Question {{ forloop.counter }}</h3>
+            <hr />
+            <h5 class="fw-bold my-3">{{ q.question }}</h5>
+
+            <div class="col-12">
+              <div class="form-check mx-4">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="{{ forloop.counter }}"
+                  id="option_1_{{ q.id }}"
+                  value="Option_1"
+                />
+                <label class="form-check-label" for="option_1_{{ q.id }}">
+                  {{ q.option_1 }}
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check mx-4">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="{{ forloop.counter }}"
+                  id="option_2_{{ q.id }}"
+                  value="Option_2"
+                />
+                <label class="form-check-label" for="option_2_{{ q.id }}">
+                  {{ q.option_2 }}
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check mx-4">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="{{ forloop.counter }}"
+                  id="option_3_{{ q.id }}"
+                  value="Option_3"
+                />
+                <label class="form-check-label" for="option_3_{{ q.id }}">
+                  {{ q.option_3 }}
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check mx-4">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="{{ forloop.counter }}"
+                  id="option_4_{{ q.id }}"
+                  value="Option_4"
+                />
+                <label class="form-check-label" for="option_4_{{ q.id }}">
+                  {{ q.option_4 }}
+                </label>
+              </div>
+            </div>
+            {% endfor %}
+            <input
+              type="submit"
+              class="btn btn-violet-fill btn-lg mt-5"
+              value="Submit Answers"
+            />
+          </form>
+        </div>
+        <br />
+      </div>
+      <div class="col-lg-3 text-center">
+        <div class="shadow-sm">
+          <div class="py-5">
+            <h4>Created by</h4>
+            <br />
+            <span>{{ course.owner.username }}</span><br />
+            <span>E-learning Platform</span>
+            <br /><br />
+            <div class="social">
+              <span><i class="bi bi-twitter"></i></span>
+              <span><i class="bi bi-facebook"></i></span>
+              <span><i class="bi bi-envelope"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

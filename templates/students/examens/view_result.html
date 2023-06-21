@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+<!------>
+{% load static %}
+
+<!--------->
+{% block content %}
+<section id="dashboad" class="dashboard">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 dashboard-sidebar">
+        <div class="mt-5">
+          <h5 class="dashboard-header">My course</h5>
+          <div class="dashboard-items">
+            <ul>
+              <li>
+                <a href="{% url 'student_course_list' %}" class="item-link"
+                  >Courses taken</a
+                >
+              </li>
+              <li><a href="#" class="item-link">Recommended courses</a></li>
+              <li><a href="#" class="item-link">Course certificates</a></li>
+              <li>
+                <a href="#" class="item-link">Recently published courses</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 course-taken px-5 mt-5">
+        <div class="shadow-sm bg-body mb-4" id="course_taken">
+          <h4 class="course-taken-title">Course taken</h4>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Courses Examens</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for course in courses %}
+              <tr>
+                <td>{{ course.title }}</td>
+                <td>{{ course.created }}</td>
+                <td>
+                  <a href="{% url 'check_marks' course.id %}" class=""
+                    >View marks</a
+                  >
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+<!-------->
+{% load static %}
+
+<!---------->
+{% block content %}
+<section id="logged_out">
+  <div class="container">
+    <div class="row p-5 justify-content-center">
+      <h2>Delete course "{{ object.title }}"</h2>
+      <hr />
+      <form action="" method="post">
+        {% csrf_token %}
+        <!----s-->
+        <p>Are you sure you want to delete "{{ object }}"</p>
+        <p>
+          <input
+            type="submit"
+            class="w-100 btn-violet-fill register-input"
+            value="Confirm"
+          />
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

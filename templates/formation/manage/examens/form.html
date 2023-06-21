@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+<!--------->
+{% load static %}
+
+<!------------>
+{% block content %}
+<section id="register" class="register">
+  <header id="header" class="header detail-header p-5">
+    <div class="container">
+      <h3>Examen questions for "{{ course.title }}"</h3>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row p-5">
+      <div
+        class="col-lg-6 mx-auto shadow-sm bg-body rounded-top register-card py-5"
+      >
+        <h3 class="register-title text-center">Course examen questions</h3>
+        <hr />
+        <form action="" method="post">
+          {% csrf_token %}
+          <!----s-->
+          <p>{{ formset.as_p }}</p>
+          <br />
+          <p>{{ formset.management_form }}</p>
+          <p>
+            <input
+              type="submit"
+              class="w-100 btn-violet-fill register-input"
+              value="Save questions"
+            />
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

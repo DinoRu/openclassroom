@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+<!------>
+{% load static %}
+
+<!--------->
+{% block title %}profile{% endblock title %}
+
+<!------------>
+{% block content %}
+<section id="profile" class="profile">
+  <header class="detail-header p-5">
+    <div class="container d-flex flex-column justify-content-between">
+      <div>
+        <small class="fw-bold"
+          >Home <i class="bi bi-chevron-right"></i>Profile
+          <i class="bi bi-chevron-right fw-bold"></i>
+        </small>
+      </div>
+      <br />
+      <div class="detail-title mt-3">
+        <h3>Profile</h3>
+        <br />
+        <nav class="nav">
+          <a
+            class="nav-link text-dark active"
+            aria-current="page"
+            href="{% url 'profile' %}"
+            >Profile</a
+          >
+          <a
+            class="nav-link text-dark"
+            aria-current="page"
+            href="{% url 'profile_update' %}"
+            >Setting profile</a
+          >
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="container p-5">
+    <div class="card">
+      <div class="row p-5 align-items-center">
+        <div class="col-lg-3">
+          <img
+            src="{{ student.thumbnail.url }}"
+            alt=""
+            class="img-fluid w-50 h-50"
+          />
+        </div>
+        <div class="col-lg-9">
+          <h5>Username: {{ student.user.username }}</h5>
+          <span>Mobile: {{ student.mobile }}</span><br />
+          <address>Address: {{ student.address }}</address>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
